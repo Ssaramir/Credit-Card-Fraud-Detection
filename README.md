@@ -1,13 +1,18 @@
-# 🛡️ Credit Card Fraud Detection
+# Credit Card Fraud Detection
 
-End-to-end DS project: EDA → features → models → tuning → REST API.
+## What is this?
+A compact, end-to-end **credit-card fraud detection** project. It takes raw transactions, explores the data, builds and tunes a classifier to spot fraud, and serves predictions via a simple REST API. The focus is on **recall-first** (catching more fraud) with a configurable decision threshold.
 
-## What I built
-- Processed **284,807** transactions (`Time`, `Amount`, `V1..V28`, `Class`)
-- Engineered **Hour_of_day**, **Day**, **log(Amount)**
-- Trained Logistic Regression, Decision Tree, XGBoost; tuned for **recall**
-- Final: **Decision Tree** — **recall 0.86**, **ROC-AUC 0.899** (test)
-- REST API with configurable decision threshold + `/health`
+## Why I built it
+To demonstrate the full **data science workflow** on a real, high-imbalance problem that matters to finance teams: from EDA and feature engineering to model selection, evaluation, and deployment. The goal is to show practical trade-offs (precision vs. recall) and how they translate to business impact.
+
+## How it works
+- **EDA:** class imbalance, amount/time patterns, fraud by hour/amount bins  
+- **Features:** `Hour_of_day`, `Day`, `log(Amount)` (+ original `V1..V28`)  
+- **Models:** Logistic Regression, Decision Tree, XGBoost → tuned for **recall**  
+- **Final choice:** Decision Tree (test ROC-AUC ≈ 0.90, recall ≈ 0.86 at chosen threshold)  
+- **Serving:** saved artifacts and a **Flask API** that computes features and applies a configurable threshold
+
 
 ## Quickstart
 ```bash
